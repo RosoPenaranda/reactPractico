@@ -1,6 +1,6 @@
-## Curso de React Practico de Plati
+## Curso de React Practico de Platiz
 
-El proyecto contiene el código del curso de React Practico de Platzi.
+El proyecto contiene el código del curso de React Practico de Platzi y el de React Router y Redux
 
 Para ejecutarlo desde la raíz del repositorio ejecutar:
 
