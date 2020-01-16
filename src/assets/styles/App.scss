@@ -5,3 +5,17 @@ body {
   font-family: $theme-font;
   background: $main-color;
 }
+
+.button {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 25px;
+  color: $blanco;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: $theme-font;
+  height: 50px;
+  letter-spacing: 1px;
+  margin: 10px 0px;
+}

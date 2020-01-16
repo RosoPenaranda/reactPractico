@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
+import React from "react";
+import { connect } from "react-redux";
 import Search from "../components/Search";
 import Categories from "../components/Categories";
 import Carousel from "../components/Carousel";
 import CarouselItem from "../components/CarouselItem";
-import Footer from "../components/Footer";
-import useInitialState from "../hooks/useInitialState";
+
 import "../assets/styles/App.scss";
 
-const API = "http://localhost:3000/initalState";
-const App = () => {
-  const inicialState = useInitialState(API);
-  console.log(inicialState);
+const Home = props => {
+  const { user, myList, trends, originals } = props;
 
   return (
-    <div className="App">
-      <Header />
-      <Search />
-      {inicialState.mylist.length > 0 && (
+    <>
+      <Search isHome />
+      {myList.length > 0 && (
         <Categories title="Mi lista">
           <Carousel>
-            {inicialState.trends.map(item => (
-              <CarouselItem key={item.id} {...item} />
+            {myList.map(item => (
+              <CarouselItem key={item.id} {...item} isMyList={true} />
             ))}
           </Carousel>
         </Categories>
@@ -29,7 +25,7 @@ const App = () => {
 
       <Categories title="Tendencias">
         <Carousel>
-          {inicialState.trends.map(item => (
+          {trends.map(item => (
             <CarouselItem key={item.id} {...item} />
           ))}
         </Carousel>
@@ -37,15 +33,21 @@ const App = () => {
 
       <Categories title="Originales Platzi Video">
         <Carousel>
-          {inicialState.originals.map(item => (
+          {originals.map(item => (
             <CarouselItem key={item.id} {...item} />
           ))}
         </Carousel>
       </Categories>
-
-      <Footer />
-    </div>
+    </>
   );
 };
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    myList: state.myList,
+    trends: state.trends,
+    originals: state.originals,
+  };
+};
 
-export default App;
+export default connect(mapStateToProps, null)(Home);
