@@ -10,17 +10,9 @@ import "../assets/styles/App.scss";
 const Home = props => {
   const { user, myList, trends, originals } = props;
 
-  console.log("props:");
-
-  console.log(props);
-
-  console.log("user");
-
-  console.log(user);
-
   return (
     <>
-      <Search />
+      <Search isHome />
       {myList.length > 0 && (
         <Categories title="Mi lista">
           <Carousel>
