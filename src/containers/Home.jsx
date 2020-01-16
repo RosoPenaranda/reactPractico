@@ -4,12 +4,28 @@ import Search from "../components/Search";
 import Categories from "../components/Categories";
 import Carousel from "../components/Carousel";
 import CarouselItem from "../components/CarouselItem";
-
+import VideoNotFound from "../components/VideoNotFound";
 import "../assets/styles/App.scss";
 
 const Home = props => {
-  const { user, myList, trends, originals } = props;
+  const { isSearching, myList, trends, originals, searching } = props;
 
+  if (isSearching) {
+    return searching.length > 0 ? (
+      <>
+        <Search isHome />
+        <Categories title="Búsqueda">
+          <Carousel>
+            {searching.map(item => (
+              <CarouselItem key={item.id} {...item} isMyList={true} />
+            ))}
+          </Carousel>
+        </Categories>
+      </>
+    ) : (
+      <VideoNotFound />
+    );
+  }
   return (
     <>
       <Search isHome />
@@ -43,7 +59,8 @@ const Home = props => {
 };
 const mapStateToProps = state => {
   return {
-    user: state.user,
+    isSearching: state.isSearching,
+    searching: state.searching,
     myList: state.myList,
     trends: state.trends,
     originals: state.originals,

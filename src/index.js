@@ -9,6 +9,8 @@ import App from "./routes/App";
 const initialState = {
   user: {},
   playing: {},
+  searching: [],
+  isSearching: false,
   myList: [],
   trends: [
     {
