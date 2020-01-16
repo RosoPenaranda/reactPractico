@@ -49,6 +49,25 @@ const reducer = (state, action) => {
       };
       break;
 
+    case "IS_SEARCHING":
+      return {
+        ...state,
+        isSearching: action.payload,
+      };
+
+      break;
+
+    case "GET_VIDEOS":
+      return {
+        ...state,
+        searching: state.trends
+          .concat(state.originals)
+          .filter(item =>
+            item.title.toLowerCase().includes(action.payload.toLowerCase())
+          ),
+      };
+      break;
+
     default:
       return state;
       break;
